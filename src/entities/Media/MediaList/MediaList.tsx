@@ -1,14 +1,16 @@
-import { Box, Typography } from '@mui/material';
+import { Box, IconButton, Typography } from '@mui/material';
 import { MediaItem } from './MediaItem';
 import { MediaType } from '../MediaType/MediaType';
 import { FC } from 'react';
 import { match } from 'ts-pattern';
+import Download from '@mui/icons-material/Download';
 
 export type MediaListProps = {
   label: string;
   type: MediaType;
   items: string[];
   onClickMedia: (type: MediaType, url: string) => void;
+  onClickAllDownload: (urls: string[]) => void;
 };
 
 export const MediaList: FC<MediaListProps> = ({
@@ -16,12 +18,18 @@ export const MediaList: FC<MediaListProps> = ({
   type,
   items,
   onClickMedia,
+  onClickAllDownload,
 }) => {
   return (
     <Box display="flex" flexDirection="column" rowGap={4} width="100%">
-      <Typography variant="body1" fontWeight="bold">
-        {label}
-      </Typography>
+      <Box display="flex" justifyContent="space-between">
+        <Typography variant="body1" fontWeight="bold">
+          {label}
+        </Typography>
+        <IconButton size="small" onClick={() => onClickAllDownload(items)}>
+          <Download />
+        </IconButton>
+      </Box>
       <Box display="flex" columnGap={8} overflow="auto">
         {match(items)
           .with([], () => (

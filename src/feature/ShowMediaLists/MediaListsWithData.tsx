@@ -23,6 +23,15 @@ export const MediaListsWithData = () => {
     }
   };
 
+  const handleClickAllDownload = (urls: string[]) => {
+    urls.forEach((url) => {
+      chrome.runtime.sendMessage({
+        action: 'download',
+        url,
+      });
+    });
+  };
+
   return (
     <Box display="flex" flexDirection="column" rowGap={4}>
       {media?.audio && (
@@ -31,6 +40,7 @@ export const MediaListsWithData = () => {
           items={media.audio}
           type={MEDIA_TYPE.SOUND}
           onClickMedia={() => {}}
+          onClickAllDownload={handleClickAllDownload}
         />
       )}
       {media?.images && (
@@ -39,6 +49,7 @@ export const MediaListsWithData = () => {
           items={media.images}
           type={MEDIA_TYPE.IMAGE}
           onClickMedia={handleClickImage}
+          onClickAllDownload={handleClickAllDownload}
         />
       )}
       {media?.video && (
@@ -47,6 +58,7 @@ export const MediaListsWithData = () => {
           items={media.video}
           type={MEDIA_TYPE.VIDEO}
           onClickMedia={() => {}}
+          onClickAllDownload={handleClickAllDownload}
         />
       )}
     </Box>
