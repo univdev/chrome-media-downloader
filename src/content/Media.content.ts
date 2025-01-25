@@ -12,6 +12,13 @@ export function sendMedia() {
       video: [] as string[],
     };
 
+    document.querySelectorAll('*').forEach((element) => {
+      const background = element.getAttribute('background-image');
+      if (background) {
+        mediaFiles.images.push(background.replace('url(', '').replace(')', ''));
+      }
+    });
+
     // 이미지 추출
     document.querySelectorAll('img').forEach((img) => {
       if (typeof img.src === 'string') {

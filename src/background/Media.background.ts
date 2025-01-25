@@ -1,4 +1,4 @@
-import { MediaFiles } from '../content/content';
+import { MediaFiles } from '../content/Media.content';
 
 export const initializeMedia = () => {
   let mediaFiles: MediaFiles = {
@@ -9,7 +9,6 @@ export const initializeMedia = () => {
 
   chrome.runtime.onMessage.addListener((request) => {
     if (request.action === 'sendMedia') {
-      console.log(request.media);
       mediaFiles = request.media as MediaFiles;
     }
   });

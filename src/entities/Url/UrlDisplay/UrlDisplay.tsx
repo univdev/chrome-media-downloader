@@ -3,9 +3,10 @@ import { Box, Button, TextField } from '@mui/material';
 
 export type UrlDisplayProps = {
   currentUrl: string;
+  onDownload: () => void;
 };
 
-export const UrlDisplay = ({ currentUrl }: UrlDisplayProps) => {
+export const UrlDisplay = ({ currentUrl, onDownload }: UrlDisplayProps) => {
   return (
     <Box display="flex" alignItems="center" columnGap={4}>
       <TextField
@@ -20,6 +21,7 @@ export const UrlDisplay = ({ currentUrl }: UrlDisplayProps) => {
         size="large"
         variant="contained"
         sx={{ height: 56 }}
+        onClick={onDownload}
       >
         <Download />
       </Button>

@@ -1,5 +1,6 @@
 import { Box, Divider } from '@mui/material';
 import { CurrentUrlDisplay } from '../../feature/ShowCurrentUrl/CurrentUrlDisplay';
+import { MediaListsWithData } from '../../feature/ShowMediaLists/MediaListsWithData';
 
 export const HomeScreen = () => {
   return (
@@ -8,7 +9,9 @@ export const HomeScreen = () => {
         <CurrentUrlDisplay />
       </Box>
       <Divider />
-      <Box px={4}>Hello world!</Box>
+      <Box display="flex" flexDirection="column" rowGap={4} width="100%" px={4}>
+        <MediaListsWithData />
+      </Box>
     </Box>
   );
 };
